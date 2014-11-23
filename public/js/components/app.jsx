@@ -23,25 +23,20 @@ module.exports = React.createClass({
 
 	render: function () {
 		var currentView = null;
-		var header = "";
-		
+
 		if (this.state.gameState === gameStore.states.JOINING_LOBBY) {
 			currentView = <JoinLobby lobbyName="Kvällslöpning 5km" lobbyToken="217839123" />;
-			header = "Join Lobby";
-			
 		} else if (this.state.gameState === gameStore.states.WAITING_FOR_READY_SIGNAL ||
 		  this.state.gameState === gameStore.states.WAITING_FOR_OTHERS) {
 			currentView = <Lobby />;
-			header = "Lobby";
-			
-		} else if (this.state.gameState === gameStore.states.ONGOING) {
+		} else if (this.state.gameState === gameStore.states.ONGOING ||
+		   this.state.gameState === gameStore.states.FINISHED) {
 			currentView = <Workout />;
-			header = "Workout";
 		}
-		
+
 		return (
 			<section>
-				<Header title={header} />
+				<Header title={this._getHeader()} />
 				{currentView}
 			</section>
 		);
@@ -55,6 +50,30 @@ module.exports = React.createClass({
 		return {
 			gameState: gameStore.getState()
 		};
+	},
+
+	_getHeader: function () {
+		if (this.state.gameState === gameStore.states.JOINING_LOBBY) {
+			return "Join Lobby";
+		}
+
+		if (this.state.gameState === gameStore.states.WAITING_FOR_READY_SIGNAL ||
+		  this.state.gameState === gameStore.states.WAITING_FOR_OTHERS) {
+			return "Lobby";
+			
+		}
+
+		if (this.state.gameState === gameStore.states.ONGOING) {
+			return "Workout";
+		}
+
+		if (this.state.gameState === gameStore.states.FINISHED) {
+			if (lobbyStore.didWin()) {
+				return "You won!";
+			} else {
+				return "You lost :(";
+			}
+		}
 	}
 
 });

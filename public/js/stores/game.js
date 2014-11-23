@@ -50,6 +50,9 @@ gameStore.dispatchToken = dispatcher.register(function(payload) {
 				_game.maxDistance = payload.maxDistance;
 				_game.state = states.ONGOING;
 				gameStore.emit('change');
+			} else if (payload.status === lobbyApi.states.FINISHED) {
+				_game.state = states.FINISHED;
+				gameStore.emit('change');
 			}
 			break;
 	}

@@ -25,6 +25,10 @@ var lobbyStore = _.assign({}, eventEmitter.prototype, {
 
 	getPlayers: function () {
 		return _lobby.players;
+	},
+
+	didWin: function () {
+		return true;
 	}
 
 });

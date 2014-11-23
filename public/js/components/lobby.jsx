@@ -91,7 +91,7 @@ module.exports = React.createClass({
 
 		if (geoStore.getStatus() === 'ALLOWED') {
 			if (this.state.isReady) {
-				return <button className={className}>Waiting for others...</button>
+				return <button className={className}>{this._getWaitingButtonLabel()}</button>
 			} else {
 				return <button className={className} onClick={this._ready}>I'm ready to run!</button>
 			}
@@ -103,5 +103,26 @@ module.exports = React.createClass({
 			return <button className={className} onClick={this._askForGeoPosition}>Get current location</button>
 		}
 	},
+
+	_getWaitingButtonLabel: function () {
+		var numWaiting = 0;
+		var waitingPlayerName = '';
+		this.state.players.forEach(function (player) {
+			if (!player.isReady) {
+				numWaiting++;
+				waitingPlayerName = player.name;
+			}
+		});
+
+		if (numWaiting > 1) {
+			return "Waiting for " + numWaiting + " players...";
+		}
+
+		if (numWaiting === 1) {
+			return "Waiting for " + waitingPlayerName + "...";
+		}
+
+		return "Waiting for others...";
+	}
 
 });
