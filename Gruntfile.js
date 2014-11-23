@@ -41,7 +41,7 @@ module.exports = function(grunt) {
 				tasks: ['sass']
 			},
 			js: {
-				files: ['public/js/**/*.jsx?'],
+				files: ['public/js/**/*.js*'],
 				tasks: ['browserify']
 			}
 		}
