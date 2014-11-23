@@ -26,6 +26,8 @@ var geoStore = _.assign({}, eventEmitter.prototype, {
 });
 
 geoStore.dispatchToken = dispatcher.register(function(payload) {
+	dispatcher.waitFor([gameStore.dispatchToken]);
+
 	switch (payload.action) {
 		case 'GEO_POSITION_NOT_ALLOWED':
 			_geo.currentPosition = payload.position;
@@ -40,6 +42,11 @@ geoStore.dispatchToken = dispatcher.register(function(payload) {
 		case 'GEO_POSITION_PENDING':
 			_geo.status = 'PENDING';
 			geoStore.emit('change');
+			break;
+		case 'FETCHED_LOBBY_STATUS':
+			if (gameStore.getState() === gameStore.states.ONGOING) {
+				geoActions.watchPosition();
+			}
 			break;
 	}
 });

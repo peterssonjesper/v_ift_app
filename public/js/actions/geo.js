@@ -3,10 +3,6 @@ var workoutApi = require('./../api/workout.js');
 
 module.exports = {
 
-	reportPosition: function (position, playerToken, lobbyId) {
-		console.log('reporting position', position);
-	},
-
 	askForPermission: function () {
 
 		dispatcher.dispatch({
@@ -26,19 +22,19 @@ module.exports = {
 	},
 
 	watchPosition: function () {
-		var didGetPosition = function (position) {
-			workoutActions.reportPosition(position.coords, gameStore.getPlayerToken(), lobbyStore.getId());
-		};
-
 		var errorOnGetPosition = function (err) {
 			console.log(err);
 		};
 
-		navigator.geolocation.watchPosition(didGetPosition, errorOnGetPosition, {
+		navigator.geolocation.watchPosition(this._reportPosition, function () {}, {
 			maximumAge: 3000,
 			timeout: 5000,
 			enableHighAccuracy: true
 		});
+	},
+
+	_reportPosition: function (position) {
+		console.log('reporting position', position);
 	}
 
 };

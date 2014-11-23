@@ -69,6 +69,9 @@ module.exports = React.createClass({
 	},
 
 	_ready: function () {
+		this.setState({
+			isReady: true
+		});
 		lobbyActions.ready(lobbyStore.getId(), gameStore.getPlayerToken());
 	},
 
@@ -83,7 +86,11 @@ module.exports = React.createClass({
 		}
 
 		if (geoStore.getStatus() === 'ALLOWED') {
-			return <button className={className} onClick={this._ready}>I'm ready to run!</button>
+			if (this.state.isReady) {
+				return <button className={className}>Waiting for others...</button>
+			} else {
+				return <button className={className} onClick={this._ready}>I'm ready to run!</button>
+			}
 		} else if (geoStore.getStatus() === 'NOT_ALLOWED') {
 			return <button className={className} onClick={this._askForGeoPosition}>Try again</button>
 		} else if (geoStore.getStatus() === 'PENDING') {
