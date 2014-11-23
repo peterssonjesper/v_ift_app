@@ -20,13 +20,6 @@ module.exports = function(grunt) {
 				src: ['*.scss'],
 				dest: 'public/dist/css',
 				ext: '.css'
-			},
-			build: {
-				expand: true,
-				cwd: 'public/scss',
-				src: ['*.scss'],
-				dest: 'v_ift/www/css/',
-				ext: '.css'
 			}
 		},
 
@@ -39,17 +32,15 @@ module.exports = function(grunt) {
 			app: {
 				src: 'public/js/init.jsx',
 				dest: 'public/dist/js/app.js'
-			},
-			build: {
-				src: 'public/js/init.jsx',
-				dest: 'v_ift/www/js/app.js'
 			}
 		},
 		
 		copy: {
 			build: {
-				src: 'public/dist/index.html',
-				dest: 'v_ift/www/index.html'
+				expand: true,
+		    cwd: 'public/dist/',
+		    src: '**',
+		    dest: 'v_ift/www/',
 			}
 		},
 
@@ -83,8 +74,8 @@ module.exports = function(grunt) {
 		grunt.loadNpmTasks('grunt-contrib-copy');
 		
 		
-		grunt.task.run('sass:build');
-		grunt.task.run('browserify:build');
+		grunt.task.run('sass:all');
+		grunt.task.run('browserify');
 		grunt.task.run('copy:build');
 	});
 
