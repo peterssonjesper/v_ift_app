@@ -28,6 +28,9 @@
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
     </feature>
+    <feature name="StatusBar">
+        <param name="ios-package" onload="true" value="CDVStatusBar" />
+    </feature>
     <name>v_ift</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -37,4 +40,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarBackgroundColor" value="#fff" />
+    <preference name="StatusBarStyle" value="lightcontent" />
 </widget>
