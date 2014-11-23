@@ -8,9 +8,21 @@ module.exports = {
 			action: 'JOINING_LOBBY'
 		});
 
-		lobbyApi.join(lobbyName, playerName, function () {
+		lobbyApi.join(lobbyName, playerName, function (playerToken) {
 			dispatcher.dispatch({
-				action: 'JOINED_LOBBY'
+				action: 'JOINED_LOBBY',
+				playerToken: playerToken,
+				lobbyName: lobbyName
+			});
+		});
+	},
+
+	fetchStatus: function (lobbyName) {
+		lobbyApi.status(lobbyName, function (status) {
+			dispatcher.dispatch({
+				action: 'FETCHED_LOBBY_STATUS',
+				lobbyName: lobbyName,
+				status: status
 			});
 		});
 	}

@@ -1,6 +1,10 @@
 var eventEmitter = require('events').EventEmitter;
-var dispatcher = require('./../singletons/dispatcher.js');
 var _ = require('lodash');
+
+var lobbyActions = require('./../actions/lobby.js');
+var dispatcher = require('./../singletons/dispatcher.js');
+
+var FETCH_LOBBY_STATUS_INTERVAL = 1000; // ms
 
 var states = {
 	IS_JOINING_LOBBY: 'IS_JOINING_LOBBY',
@@ -9,13 +13,23 @@ var states = {
 };
 
 var _lobby = {
-	state: states.HAS_NOT_JOINED_LOBBY
+	state: states.HAS_NOT_JOINED_LOBBY,
+	name: '',
+	players: []
 };
 
 var lobbyStore = _.assign({}, eventEmitter.prototype, {
 
 	getState: function () {
 		return _lobby.state;
+	},
+
+	getName: function () {
+		return _lobby.name;
+	},
+
+	getPlayers: function () {
+		return _lobby.players;
 	},
 
 	states: states
@@ -30,9 +44,21 @@ lobbyStore.dispatchToken = dispatcher.register(function(payload) {
 			break;
 		case 'JOINED_LOBBY':
 			_lobby.state = states.HAS_JOINED_LOBBY;
+			_lobby.name = payload.lobbyName;
+			lobbyStore.emit('change');
+			break;
+		case 'FETCHED_LOBBY_STATUS':
+			_lobby.players = payload.status.players;
 			lobbyStore.emit('change');
 			break;
 	}
 });
+
+setInterval(function () {
+	// TODO: When ready, stop fetching status
+	if (lobbyStore.getState() === states.HAS_JOINED_LOBBY) {
+		lobbyActions.fetchStatus(lobbyStore.getName());
+	}
+}, FETCH_LOBBY_STATUS_INTERVAL);
 
 module.exports = lobbyStore;
