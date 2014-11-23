@@ -45,7 +45,7 @@ module.exports = React.createClass({
 			var isReady = (
 				<span className="lobby__ready-state lobby--not-ready">Not Ready</span>
 			);
-			if (player.isReady) {
+			if (player.isready) {
 				isReady = (
 					<span className="lobby__ready-state lobby--ready">Ready</span>
 				);
@@ -82,7 +82,6 @@ module.exports = React.createClass({
 	},
 
 	_getButton: function () {
-		
 		var className = 'lobby__button';
 		if (this.state.isReady) {
 			className += ' button--disabled';
@@ -107,7 +106,7 @@ module.exports = React.createClass({
 		var numWaiting = 0;
 		var waitingPlayerName = '';
 		this.state.players.forEach(function (player) {
-			if (!player.isReady) {
+			if (!player.isready) {
 				numWaiting++;
 				waitingPlayerName = player.name;
 			}

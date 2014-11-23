@@ -28,7 +28,9 @@ module.exports = {
 			console.log(err);
 		};
 
-		navigator.geolocation.watchPosition(this._reportPosition, function () {}, {
+		navigator.geolocation.watchPosition(function(position) {
+			this._reportPosition(position);
+		}.bind(this), function () {}, {
 			maximumAge: 3000,
 			timeout: 5000,
 			enableHighAccuracy: true
@@ -37,8 +39,8 @@ module.exports = {
 
 	_reportPosition: function (position) {
 		geoApi.reportPosition(
-			position.lat,
-			position.lng,
+			position.coords.latitude,
+			position.coords.longitude,
 			lobbyStore.getId(),
 			gameStore.getPlayerToken(),
 			function (response) {

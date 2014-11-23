@@ -52,6 +52,10 @@ lobbyStore.dispatchToken = dispatcher.register(function(payload) {
 			_lobby.players = payload.players;
 			lobbyStore.emit('change');
 			break;
+		case 'PLAYER_IS_READY':
+			_lobby.players = payload.players;
+			lobbyStore.emit('change');
+			break;
 	}
 });
 

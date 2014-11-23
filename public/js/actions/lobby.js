@@ -25,16 +25,17 @@ module.exports = {
 				action: 'FETCHED_LOBBY_STATUS',
 				players: response.players,
 				maxDistance: response.distance,
-				status: response.status
+				status: response.Status
 			});
 		});
 	},
 
 	ready: function (lobbyId, playerToken) {
-		lobbyApi.ready(lobbyId, playerToken, function (status) {
+		lobbyApi.ready(lobbyId, playerToken, function (response) {
 			dispatcher.dispatch({
 				action: 'PLAYER_IS_READY',
-				status: status
+				state: response.state,
+				players: response.players
 			});
 		});
 	}

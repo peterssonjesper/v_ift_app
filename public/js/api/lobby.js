@@ -14,51 +14,20 @@ module.exports = {
 	},
 
 	status: function (lobbyId, playerToken, callback) {
-		$.get(BASE_API_URL + '/lobby/' + lobbyId, {
+		$.get(BASE_API_URL + '/getlobby/' + lobbyId, {
 			playerId: playerToken
 		}, function (response) {
-			console.log('got status response', response);
 			callback(response);
 		});
-		setTimeout(function () {
-			callback({
-				distance: 5000.0,
-				status: 'Waiting',
-				players: [
-					{
-						name: "Petter",
-						isReady: true,
-						distance: 0
-					},
-					{
-						name: "Christoffer",
-						isReady: false,
-						distance: 0
-					}
-				]
-			});
-		}, 200);
 	},
 
 	ready: function (lobbyId, playerToken, callback) {
-		setTimeout(function () {
-			callback({
-				maxDistance: 5000.0,
-				status: 'Ongoing',
-				players: [
-					{
-						name: "Petter",
-						isReady: true,
-						distance: 0
-					},
-					{
-						name: "Christoffer",
-						isReady: true,
-						distance: 0
-					}
-				]
-			});
-		}, 200);
+		$.post(BASE_API_URL + '/ready', {
+			lobbyId: lobbyId,
+			playerId: playerToken
+		}, function (response) {
+			callback(response);
+		});
 	},
 
 	states: {
