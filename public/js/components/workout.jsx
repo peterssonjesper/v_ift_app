@@ -24,7 +24,7 @@ module.exports = React.createClass({
 		var players = this._getPlayerNodes();
 		return (
 			<article>
-				<ul>
+				<ul className="lobby__list">
 					{players}
 				</ul>
 			</article>
@@ -48,9 +48,9 @@ module.exports = React.createClass({
 				width: (player.distance / this.state.maxDistance) + '%'
 			};
 			return (
-				<li key={"player-" + i} className="player">
+				<li key={"player-" + i} className="lobby__list-item player">
 					<p className="player__name">{player.name}</p>
-					<div className="player__progress" style={style}></div>
+					<div className={"player__progress player__progress--color-" + i} style={style}></div>
 				</li>
 			);
 		}.bind(this));

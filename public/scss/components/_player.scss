@@ -1,0 +1,17 @@
+.player__name {
+  margin: 0 0 10px 0;
+}
+.player__progress {
+  height: 4px;
+  background: #0B486B;
+  width: 200px;
+  border-radius: 2px;
+
+  &--color-1 {
+    background: #3B8686;
+  }
+
+  &--color-2 {
+    background: #79BD9A;
+  }
+}
