@@ -1,5 +1,7 @@
 var dispatcher = require('./../singletons/dispatcher.js');
-var workoutApi = require('./../api/workout.js');
+var geoApi = require('./../api/geo.js');
+var lobbyStore = require('./../stores/lobby.js');
+var gameStore = require('./../stores/game.js');
 
 module.exports = {
 
@@ -34,7 +36,7 @@ module.exports = {
 	},
 
 	_reportPosition: function (position) {
-		console.log('reporting position', position);
+		geoApi.reportPosition(position.lat, position.lng, lobbyStore.getId(), gameStore.getPlayerToken());
 	}
 
 };

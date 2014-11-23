@@ -9,14 +9,17 @@ module.exports = {
 			lobbyId: lobbyId,
 			playerName: playerName
 		}, function (response) {
-			console.log(response);
-			callback(playerToken);
+			callback(response);
 		});
-		callback('213456'); // TODO
 	},
 
 	status: function (lobbyId, playerToken, callback) {
-		console.log('fetching status for ' + lobbyId);
+		$.get(BASE_API_URL, {
+			lobbyId: lobbyId,
+			playerId: playerToken
+		}, function (response) {
+			callback(response);
+		});
 		setTimeout(function () {
 			callback({
 				maxDistance: 5000.0,

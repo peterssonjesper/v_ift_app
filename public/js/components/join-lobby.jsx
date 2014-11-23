@@ -2,21 +2,20 @@
 
 var React = require('react');
 var lobbyActions = require('./../actions/lobby.js');
+var lobbyStore = require('./../stores/lobby.js');
 
 module.exports = React.createClass({
 
 	getDefaultProps: function () {
 		return {
-			lobbyName: '',
-			lobbyToken: '',
 			name: ''
 		};
 	},
 
 	getInitialState: function () {
-		return {
-			name: this.props.name
-		};
+		var state = this._getStateFromStores();
+		state.name = this.props.name;
+		return state;
 	},
 
 	render: function () {
@@ -38,7 +37,7 @@ module.exports = React.createClass({
 
 	_join: function (ev) {
 		ev.preventDefault();
-		lobbyActions.join(this.props.lobbyId, this.state.name);
+		lobbyActions.join(this.state.lobbyId, this.state.name);
 	},
 
 	_onChange: function () {
@@ -47,7 +46,7 @@ module.exports = React.createClass({
 
 	_getStateFromStores: function () {
 		return {
-			isLoading: lobbyStore.getState() === lobbyStore.states.IS_JOINING_LOBBY
+			lobbyId: lobbyStore.getId()
 		};
 	}
 

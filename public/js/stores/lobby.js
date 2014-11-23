@@ -8,7 +8,7 @@ var dispatcher = require('./../singletons/dispatcher.js');
 var FETCH_LOBBY_STATUS_INTERVAL = 1000; // ms
 
 var _lobby = {
-	id: 'lopning-5km',
+	id: 'v_iftlobby0',
 	name: '',
 	players: []
 };
@@ -40,6 +40,8 @@ lobbyStore.dispatchToken = dispatcher.register(function(payload) {
 			break;
 		case 'JOINED_LOBBY':
 			_lobby.name = payload.lobbyName;
+			_lobby.players = payload.players;
+			_lobby.maxDistance = payload.maxDistance;
 			lobbyStore.emit('change');
 			break;
 		case 'FETCHED_LOBBY_STATUS':
