@@ -61,7 +61,8 @@ lobbyStore.dispatchToken = dispatcher.register(function(payload) {
 
 setInterval(function () {
 	if (gameStore.getState() === gameStore.states.WAITING_FOR_READY_SIGNAL ||
-	  gameStore.getState() === gameStore.states.WAITING_FOR_OTHERS) {
+	  gameStore.getState() === gameStore.states.WAITING_FOR_OTHERS ||
+	  gameStore.getState() === gameStore.states.ONGOING) {
 		lobbyActions.fetchStatus(lobbyStore.getId(), gameStore.getPlayerToken());
 	}
 }, FETCH_LOBBY_STATUS_INTERVAL);

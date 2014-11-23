@@ -33,7 +33,7 @@ module.exports = {
 	states: {
 		WAITING: 'Waiting',
 		ONGOING: 'Ongoing',
-		FINISHED: 'Finished'
+		FINISHED: 'Finish'
 	}
 
 };
