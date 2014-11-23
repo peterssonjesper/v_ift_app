@@ -2,6 +2,7 @@
 
 var React = require('react');
 var gameStore = require('./../stores/game.js');
+var Header = require('./../components/header.jsx');
 var JoinLobby = require('./../components/join-lobby.jsx');
 var Workout = require('./../components/workout.jsx');
 var Lobby = require('./../components/lobby.jsx');
@@ -22,15 +23,28 @@ module.exports = React.createClass({
 
 	render: function () {
 		var currentView = null;
+		var header = "";
+		
 		if (this.state.gameState === gameStore.states.JOINING_LOBBY) {
 			currentView = <JoinLobby lobbyName="Kvällslöpning 5km" lobbyToken="217839123" />;
+			header = "Join Lobby";
+			
 		} else if (this.state.gameState === gameStore.states.WAITING_FOR_READY_SIGNAL ||
 		  this.state.gameState === gameStore.states.WAITING_FOR_OTHERS) {
-			currentView = <Lobby />
+			currentView = <Lobby />;
+			header = "Lobby";
+			
 		} else if (this.state.gameState === gameStore.states.ONGOING) {
-			currentView = <Workout />
+			currentView = <Workout />;
+			header = "Workout";
 		}
-		return currentView;
+		
+		return (
+			<section>
+				<Header title={header} />
+				{currentView}
+			</section>
+		);
 	},
 
 	_onChange: function () {

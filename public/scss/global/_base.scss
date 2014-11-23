@@ -1,0 +1,33 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $theme-font-sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+#app {
+  width: 100%;
+  margin: 70px auto 0;
+  padding: 0 15px;
+}
+
+%reset-list {
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+}

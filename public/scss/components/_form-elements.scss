@@ -1,0 +1,27 @@
+%input-reset {
+  border: none;
+  
+  &:focus,
+  &:active,
+  &:hover {
+    outline: none;
+  }
+}
+
+input[type="text"] {
+  @extend %input-reset;
+  transition: all linear 0.25s;
+  
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 6px 12px;
+  border-bottom: 2px solid #ccc;
+  
+  font-size: 16px;
+  
+  &:focus {
+    border-bottom-color: $secondary-color;
+    
+  }
+}

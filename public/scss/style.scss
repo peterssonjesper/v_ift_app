@@ -1,4 +1,17 @@
-$color: darken(white, 5%);
-body {
-	background: $color;
-}
+// Libs
+@import "lib/normalize";
+
+// Global
+@import "global/mixins";
+@import "global/settings";
+@import "global/base";
+
+
+// Components
+@import "components/header";
+@import "components/form-elements";
+@import "components/buttons";
+
+// Pages
+
+@import "pages/lobby";

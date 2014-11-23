@@ -1,0 +1,27 @@
+%button-reset {
+  border: none;
+  background: transparent;
+  
+  &:focus,
+  &:active,
+  &:hover {
+    outline: none;
+  }
+}
+
+%button {
+  @extend %button-reset;
+  transition: all linear 0.25s;
+  
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 6px 12px;
+  
+  font-size: 18px;
+}
+
+%button-primary {
+  @extend %button;
+  @include button-color(#fff, $primary-color);
+}

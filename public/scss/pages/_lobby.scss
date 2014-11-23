@@ -1,0 +1,33 @@
+.lobby {
+  
+}
+
+.lobby__action-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 15px;
+}
+
+.lobby__list {
+  @extend %reset-list;
+  margin-bottom: 30px;
+}
+
+.lobby__list-item {
+  font-size: 16px;
+  padding: 15px 0;
+  
+  span {
+    
+  }
+}
+
+.lobby__radio-button {
+  margin-right: 5px;
+}
+
+.lobby__button {
+  @extend %button-primary;
+}

@@ -1,0 +1,17 @@
+
+@mixin button-color($fg-color, $bg-color) {
+  background: $bg-color;
+  color: $fg-color;
+  border-bottom: 3px solid darken($bg-color, 10%);
+  
+  &:hover,
+  &:focus {
+    background: darken($bg-color, 10%);
+  }
+  
+  &:active {
+    background: darken($bg-color, 20%);
+    border-bottom-color: darken($bg-color, 20%);
+  }
+  
+}
