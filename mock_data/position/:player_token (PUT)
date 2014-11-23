@@ -1,0 +1,27 @@
+input:
+
+{
+	"lng": 18.1,
+	"lat": 58.2
+}
+
+output:
+
+{
+	race: {
+		"maxDistance": 5000.0, // meters
+		"finished": false
+	},
+	players: [
+		{
+			"name": "Petter",
+			"ready": true,
+			"distance": 1237.8 // meters
+		},
+		{
+			"name": "Christoffer",
+			"ready": true,
+			"distance": 2237.8 // meters
+		}
+	]
+}
