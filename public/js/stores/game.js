@@ -1,11 +1,13 @@
 var eventEmitter = require('events').EventEmitter;
 var dispatcher = require('./../singletons/dispatcher.js');
+var lobbyApi = require('./../api/lobby.js');
 var _ = require('lodash');
 
 var states = {
 	WAITING_FOR_READY_SIGNAL: 'WAITING_FOR_READY_SIGNAL',
 	WAITING_FOR_OTHERS: 'WAITING_FOR_OTHERS',
-	JOINING_LOBBY: 'JOINING_LOBBY'
+	JOINING_LOBBY: 'JOINING_LOBBY',
+	ONGOING: 'ONGOING'
 };
 
 var _game = {
@@ -37,6 +39,13 @@ gameStore.dispatchToken = dispatcher.register(function(payload) {
 		case 'PLAYER_IS_READY':
 			_game.state = states.WAITING_FOR_OTHERS;
 			gameStore.emit('change');
+			break;
+		case 'FETCHED_LOBBY_STATUS':
+			console.log(payload.status);
+			if (payload.status === lobbyApi.states.ONGOING) {
+				_game.state = states.ONGOING;
+				gameStore.emit('change');
+			}
 			break;
 	}
 });

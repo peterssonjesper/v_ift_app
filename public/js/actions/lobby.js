@@ -18,10 +18,11 @@ module.exports = {
 	},
 
 	fetchStatus: function (lobbyId, playerToken) {
-		lobbyApi.status(lobbyId, playerToken, function (status) {
+		lobbyApi.status(lobbyId, playerToken, function (response) {
 			dispatcher.dispatch({
 				action: 'FETCHED_LOBBY_STATUS',
-				status: status
+				players: response.players,
+				status: response.status
 			});
 		});
 	},

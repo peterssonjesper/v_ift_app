@@ -3,6 +3,7 @@
 var React = require('react');
 var gameStore = require('./../stores/game.js');
 var JoinLobby = require('./../components/join-lobby.jsx');
+var Workout = require('./../components/workout.jsx');
 var Lobby = require('./../components/lobby.jsx');
 
 module.exports = React.createClass({
@@ -26,6 +27,8 @@ module.exports = React.createClass({
 		} else if (this.state.gameState === gameStore.states.WAITING_FOR_READY_SIGNAL ||
 		  this.state.gameState === gameStore.states.WAITING_FOR_OTHERS) {
 			currentView = <Lobby />
+		} else if (this.state.gameState === gameStore.states.ONGOING) {
+			currentView = <Workout />
 		}
 		return currentView;
 	},

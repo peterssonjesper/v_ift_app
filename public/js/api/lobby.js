@@ -13,7 +13,7 @@ module.exports = {
 		setTimeout(function () {
 			callback({
 				maxDistance: 5000.0,
-				status: 'waiting_for_players_to_get_ready',
+				status: 'Ongoing',
 				players: [
 					{
 						name: "Petter",
@@ -34,7 +34,7 @@ module.exports = {
 		setTimeout(function () {
 			callback({
 				maxDistance: 5000.0,
-				status: 'running',
+				status: 'Ongoing',
 				players: [
 					{
 						name: "Petter",
@@ -49,6 +49,12 @@ module.exports = {
 				]
 			});
 		}, 200);
+	},
+
+	states: {
+		WAITING: 'Waiting',
+		ONGOING: 'Ongoing',
+		FINISHED: 'Finished'
 	}
 
 };

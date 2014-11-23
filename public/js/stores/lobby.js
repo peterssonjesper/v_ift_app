@@ -54,7 +54,7 @@ lobbyStore.dispatchToken = dispatcher.register(function(payload) {
 			lobbyStore.emit('change');
 			break;
 		case 'FETCHED_LOBBY_STATUS':
-			_lobby.players = payload.status.players;
+			_lobby.players = payload.players;
 			lobbyStore.emit('change');
 			break;
 	}
