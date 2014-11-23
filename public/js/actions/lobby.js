@@ -8,11 +8,12 @@ module.exports = {
 			action: 'JOINING_LOBBY'
 		});
 
-		lobbyApi.join(lobbyId, playerName, function (playerToken) {
+		lobbyApi.join(lobbyId, playerName, function (playerToken, maxDistance) {
 			dispatcher.dispatch({
 				action: 'JOINED_LOBBY',
 				lobbyName: '',
-				playerToken: playerToken
+				playerToken: playerToken,
+				maxDistance: maxDistance
 			});
 		});
 	},
@@ -22,6 +23,7 @@ module.exports = {
 			dispatcher.dispatch({
 				action: 'FETCHED_LOBBY_STATUS',
 				players: response.players,
+				maxDistance: response.maxDistance,
 				status: response.status
 			});
 		});

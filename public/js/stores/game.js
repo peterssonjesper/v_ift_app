@@ -13,7 +13,7 @@ var states = {
 var _game = {
 	state: states.JOINING_LOBBY,
 	playerToken: '',
-	hasAllowedGeoPosition: false
+	maxDistance: 0
 };
 
 var gameStore = _.assign({}, eventEmitter.prototype, {
@@ -24,6 +24,10 @@ var gameStore = _.assign({}, eventEmitter.prototype, {
 
 	getPlayerToken: function () {
 		return _game.playerToken
+	},
+
+	getMaxDistance: function () {
+		return _game.maxDistance;
 	},
 
 	states: states
@@ -43,6 +47,7 @@ gameStore.dispatchToken = dispatcher.register(function(payload) {
 			break;
 		case 'FETCHED_LOBBY_STATUS':
 			if (payload.status === lobbyApi.states.ONGOING) {
+				_game.maxDistance = payload.maxDistance;
 				_game.state = states.ONGOING;
 				gameStore.emit('change');
 			}

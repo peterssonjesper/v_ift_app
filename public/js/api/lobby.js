@@ -1,11 +1,15 @@
+var $ = require('jquery');
+
+var BASE_API_URL = 'http://viftapi.apphb.com';
+
 module.exports = {
 
 	join: function (lobbyId, playerName, callback) {
-		console.log('joining ' + lobbyId + ' with name ' + playerName);
-		setTimeout(function () {
-			var playerToken = "21738917398";
+		$.post(BASE_API_URL + '/join', function (response) {
+			console.log(response);
 			callback(playerToken);
-		}, 500);
+		});
+		callback('213456'); // TODO
 	},
 
 	status: function (lobbyId, playerToken, callback) {
