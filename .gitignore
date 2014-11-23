@@ -2,3 +2,19 @@ public/dist
 bower_components
 node_modules
 *.sw[a-z]
+
+# Android
+v_ift/platforms/android/assets/www
+v_ift/platforms/android/bin/
+v_ift/platforms/android/gen/
+v_ift/platforms/android/res/xml/config.xml
+ 
+# iOS
+v_ift/platforms/ios/build/
+v_ift/platforms/ios/CordovaLib/build/
+v_ift/platforms/ios/www
+v_ift/platforms/ios/MyPace/config.xml
+v_ift/platforms/ios/.staging
+ 
+# Emulator logs
+v_ift/platforms/ios/cordova/console.log
