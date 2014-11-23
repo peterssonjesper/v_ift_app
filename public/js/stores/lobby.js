@@ -28,7 +28,7 @@ var lobbyStore = _.assign({}, eventEmitter.prototype, {
 	},
 
 	didWin: function () {
-		return true;
+		return false;
 	}
 
 });

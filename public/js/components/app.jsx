@@ -2,6 +2,7 @@
 
 var React = require('react');
 var gameStore = require('./../stores/game.js');
+var lobbyStore = require('./../stores/lobby.js');
 var Header = require('./../components/header.jsx');
 var JoinLobby = require('./../components/join-lobby.jsx');
 var Workout = require('./../components/workout.jsx');

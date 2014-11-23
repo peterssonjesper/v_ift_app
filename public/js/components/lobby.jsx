@@ -120,7 +120,7 @@ module.exports = React.createClass({
 			return "Waiting for " + waitingPlayerName + "...";
 		}
 
-		return "Waiting for others...";
+		return "Waiting for players to join...";
 	}
 
 });
