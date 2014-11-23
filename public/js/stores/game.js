@@ -12,7 +12,8 @@ var states = {
 
 var _game = {
 	state: states.JOINING_LOBBY,
-	playerToken: ''
+	playerToken: '',
+	hasAllowedGeoPosition: false
 };
 
 var gameStore = _.assign({}, eventEmitter.prototype, {
@@ -41,7 +42,6 @@ gameStore.dispatchToken = dispatcher.register(function(payload) {
 			gameStore.emit('change');
 			break;
 		case 'FETCHED_LOBBY_STATUS':
-			console.log(payload.status);
 			if (payload.status === lobbyApi.states.ONGOING) {
 				_game.state = states.ONGOING;
 				gameStore.emit('change');

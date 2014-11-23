@@ -4,6 +4,8 @@ var React = require('react');
 var lobbyStore = require('./../stores/lobby.js');
 var lobbyActions = require('./../actions/lobby.js');
 var gameStore = require('./../stores/game.js');
+var geoActions = require('./../actions/geo.js');
+var geoStore = require('./../stores/geo.js');
 
 module.exports = React.createClass({
 
@@ -18,19 +20,20 @@ module.exports = React.createClass({
 	getInitialState: function () {
 		var state = this._getStateFromStores();
 		state.isReady = false;
+		state.hasAllowedGeoPosition = false;
 		return state;
 	},
 
 	render: function () {
 		var players = this._getPlayerNodes();
-		var isReadyButton = this._isReadyButton();
+		var button = this._getButton();
 		return (
 			<article>
 				Löpare:
 				<ul>
 					{players}
 				</ul>
-				{isReadyButton}
+				{button}
 			</article>
 		);
 	},
@@ -66,18 +69,28 @@ module.exports = React.createClass({
 	},
 
 	_ready: function () {
-		this.setState({
-			isReady: true
-		});
 		lobbyActions.ready(lobbyStore.getId(), gameStore.getPlayerToken());
 	},
 
-	_isReadyButton: function () {
+	_askForGeoPosition: function () {
+		geoActions.askForPermission();
+	},
+
+	_getButton: function () {
 		var className = '';
 		if (this.state.isReady) {
 			className += 'button--disabled';
 		}
-		return <button className={className} onClick={this._ready}>Jag är redo!</button>
+
+		if (geoStore.getStatus() === 'ALLOWED') {
+			return <button className={className} onClick={this._ready}>I'm ready to run!</button>
+		} else if (geoStore.getStatus() === 'NOT_ALLOWED') {
+			return <button className={className} onClick={this._askForGeoPosition}>Try again</button>
+		} else if (geoStore.getStatus() === 'PENDING') {
+			return <button className={className}>Reading position...</button>
+		} else {
+			return <button className={className} onClick={this._askForGeoPosition}>Get current location</button>
+		}
 	},
 
 });

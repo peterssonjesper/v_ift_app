@@ -13,7 +13,7 @@ module.exports = {
 		setTimeout(function () {
 			callback({
 				maxDistance: 5000.0,
-				status: 'Ongoing',
+				status: 'Waiting',
 				players: [
 					{
 						name: "Petter",
