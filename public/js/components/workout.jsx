@@ -45,7 +45,7 @@ module.exports = React.createClass({
 	_getPlayerNodes: function () {
 		return this.state.players.map(function (player, i) {
 			var style = {
-				width: (player.distance / this.state.maxDistance) + '%'
+				width: Math.min(player.distance / this.state.maxDistance, 100) + '%'
 			};
 			return (
 				<li key={"player-" + i} className="lobby__list-item player">

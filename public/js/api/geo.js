@@ -12,7 +12,7 @@ module.exports = {
 			lng: lng
 		}, function (response) {
 			callback(response);
-		});
+		}, 'json');
 	}
 
 };
