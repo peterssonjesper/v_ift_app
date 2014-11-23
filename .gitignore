@@ -1,7 +1,15 @@
-public/dist
+public/dist/js
+public/dist/css
 bower_components
 node_modules
 *.sw[a-z]
+
+v_ift/www/css
+!v_ift/www/css/index.css
+
+v_ift/www/js
+!v_ift/www/js/index.js
+
 
 # Android
 v_ift/platforms/android/assets/www

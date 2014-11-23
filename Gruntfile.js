@@ -20,6 +20,13 @@ module.exports = function(grunt) {
 				src: ['*.scss'],
 				dest: 'public/dist/css',
 				ext: '.css'
+			},
+			build: {
+				expand: true,
+				cwd: 'public/scss',
+				src: ['*.scss'],
+				dest: 'v_ift/www/css/',
+				ext: '.css'
 			}
 		},
 
@@ -32,6 +39,10 @@ module.exports = function(grunt) {
 			app: {
 				src: 'public/js/init.jsx',
 				dest: 'public/dist/js/app.js'
+			},
+			build: {
+				src: 'public/js/init.jsx',
+				dest: 'v_ift/www/js/app.js'
 			}
 		},
 
@@ -55,8 +66,16 @@ module.exports = function(grunt) {
 		grunt.loadNpmTasks('grunt-browserify');
 		grunt.loadNpmTasks('grunt-contrib-watch');
 		grunt.task.run('sass:all');
-		grunt.task.run('browserify');
+		grunt.task.run('browserify:app');
 		grunt.task.run('watch');
+	});
+	
+	grunt.registerTask('build', [], function(){
+		grunt.loadNpmTasks('grunt-sass');
+		grunt.loadNpmTasks('grunt-browserify');
+		
+		grunt.task.run('sass:build');
+		grunt.task.run('browserify:build');
 	});
 
 	grunt.registerTask('sass', [], function () {
