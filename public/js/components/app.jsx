@@ -10,6 +10,10 @@ module.exports = React.createClass({
 		gameStore.addListener('change', this._onChange);
 	},
 
+	componentWillUnmount: function () {
+		gameStore.removeListener('change', this._onChange);
+	},
+
 	getInitialState: function () {
 		return this._getStateFromStores();
 	},

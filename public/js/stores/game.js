@@ -23,7 +23,7 @@ var gameStore = _.assign({}, eventEmitter.prototype, {
 
 gameStore.dispatchToken = dispatcher.register(function(payload) {
 	switch (payload.action) {
-		case 'JOINING_LOBBY':
+		case 'JOINED_LOBBY':
 			_game.state = states.WAITING_FOR_READY_SIGNAL;
 			gameStore.emit('change');
 			break;
