@@ -63,7 +63,6 @@ module.exports = React.createClass({
 		if (this.state.gameState === gameStore.states.WAITING_FOR_READY_SIGNAL ||
 		  this.state.gameState === gameStore.states.WAITING_FOR_OTHERS) {
 			return "Lobby";
-			
 		}
 
 		if (this.state.gameState === gameStore.states.ONGOING) {

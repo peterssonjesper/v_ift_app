@@ -29,7 +29,6 @@ module.exports = React.createClass({
 		var button = this._getButton();
 		return (
 			<article>
-				<h2>Participants</h2>
 				<ul className="lobby__list">
 					{players}
 				</ul>
