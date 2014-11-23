@@ -14,15 +14,15 @@ module.exports = {
 	},
 
 	status: function (lobbyId, playerToken, callback) {
-		$.get(BASE_API_URL, {
-			lobbyId: lobbyId,
+		$.get(BASE_API_URL + '/lobby/' + lobbyId, {
 			playerId: playerToken
 		}, function (response) {
+			console.log('got status response', response);
 			callback(response);
 		});
 		setTimeout(function () {
 			callback({
-				maxDistance: 5000.0,
+				distance: 5000.0,
 				status: 'Waiting',
 				players: [
 					{

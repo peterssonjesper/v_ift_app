@@ -55,6 +55,12 @@ gameStore.dispatchToken = dispatcher.register(function(payload) {
 				gameStore.emit('change');
 			}
 			break;
+		case 'UPDATED_POSITION':
+			if (payload.isFinished) {
+				_game.state = states.FINISHED;
+				lobbyStore.emit('change');
+			}
+			break;
 	}
 });
 

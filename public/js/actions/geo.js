@@ -36,7 +36,19 @@ module.exports = {
 	},
 
 	_reportPosition: function (position) {
-		geoApi.reportPosition(position.lat, position.lng, lobbyStore.getId(), gameStore.getPlayerToken());
+		geoApi.reportPosition(
+			position.lat,
+			position.lng,
+			lobbyStore.getId(),
+			gameStore.getPlayerToken(),
+			function (response) {
+				dispatcher.dispatch({
+					action: 'UPDATED_POSITION',
+					isFinished: response.isFinished,
+					players: response.players
+				});
+			}
+		);
 	}
 
 };

@@ -48,6 +48,10 @@ lobbyStore.dispatchToken = dispatcher.register(function(payload) {
 			_lobby.players = payload.players;
 			lobbyStore.emit('change');
 			break;
+		case 'UPDATED_POSITION':
+			_lobby.players = payload.players;
+			lobbyStore.emit('change');
+			break;
 	}
 });
 
