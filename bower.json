@@ -1,0 +1,19 @@
+{
+  "name": "uh",
+  "version": "0.0.0",
+  "authors": [
+    "Jesper Petersson <jesper@jpetersson.se>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "*.*"
+  }
+}

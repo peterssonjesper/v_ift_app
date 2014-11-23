@@ -1,0 +1,4 @@
+public/dist
+bower_components
+node_modules
+*.sw[a-z]

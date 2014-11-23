@@ -1,0 +1,26 @@
+{
+  "name": "uh",
+  "version": "0.0.0",
+  "description": "",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "grunt-sass": "~0.16.0",
+    "grunt-react": "~0.9.0",
+    "node-bourbon": "~1.2.3"
+  },
+  "devDependencies": {
+    "grunt-browserify": "~3.0.1",
+    "grunt-contrib-watch": "~0.6.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "browser": {
+    "react": "./bower_components/react/react.js"
+  }
+}
