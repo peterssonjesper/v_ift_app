@@ -3,25 +3,33 @@ var lobbyApi = require('./../api/lobby.js');
 
 module.exports = {
 
-	join: function (lobbyName, playerName) {
+	join: function (lobbyId, playerName) {
 		dispatcher.dispatch({
 			action: 'JOINING_LOBBY'
 		});
 
-		lobbyApi.join(lobbyName, playerName, function (playerToken) {
+		lobbyApi.join(lobbyId, playerName, function (playerToken) {
 			dispatcher.dispatch({
 				action: 'JOINED_LOBBY',
-				playerToken: playerToken,
-				lobbyName: lobbyName
+				lobbyName: '',
+				playerToken: playerToken
 			});
 		});
 	},
 
-	fetchStatus: function (lobbyName) {
-		lobbyApi.status(lobbyName, function (status) {
+	fetchStatus: function (lobbyId, playerToken) {
+		lobbyApi.status(lobbyId, playerToken, function (status) {
 			dispatcher.dispatch({
 				action: 'FETCHED_LOBBY_STATUS',
-				lobbyName: lobbyName,
+				status: status
+			});
+		});
+	},
+
+	ready: function (lobbyId, playerToken) {
+		lobbyApi.ready(lobbyId, playerToken, function (status) {
+			dispatcher.dispatch({
+				action: 'PLAYER_IS_READY',
 				status: status
 			});
 		});

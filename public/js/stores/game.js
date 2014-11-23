@@ -4,6 +4,7 @@ var _ = require('lodash');
 
 var states = {
 	WAITING_FOR_READY_SIGNAL: 'WAITING_FOR_READY_SIGNAL',
+	WAITING_FOR_OTHERS: 'WAITING_FOR_OTHERS',
 	JOINING_LOBBY: 'JOINING_LOBBY'
 };
 
@@ -18,6 +19,10 @@ var gameStore = _.assign({}, eventEmitter.prototype, {
 		return _game.state;
 	},
 
+	getPlayerToken: function () {
+		return _game.playerToken
+	},
+
 	states: states
 
 });
@@ -27,6 +32,10 @@ gameStore.dispatchToken = dispatcher.register(function(payload) {
 		case 'JOINED_LOBBY':
 			_game.state = states.WAITING_FOR_READY_SIGNAL;
 			_game.playerToken = payload.playerToken;
+			gameStore.emit('change');
+			break;
+		case 'PLAYER_IS_READY':
+			_game.state = states.WAITING_FOR_OTHERS;
 			gameStore.emit('change');
 			break;
 	}

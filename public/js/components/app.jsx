@@ -23,7 +23,8 @@ module.exports = React.createClass({
 		var currentView = null;
 		if (this.state.gameState === gameStore.states.JOINING_LOBBY) {
 			currentView = <JoinLobby lobbyName="Kvällslöpning 5km" lobbyToken="217839123" />;
-		} else if (this.state.gameState === gameStore.states.WAITING_FOR_READY_SIGNAL) {
+		} else if (this.state.gameState === gameStore.states.WAITING_FOR_READY_SIGNAL ||
+		  this.state.gameState === gameStore.states.WAITING_FOR_OTHERS) {
 			currentView = <Lobby />
 		}
 		return currentView;

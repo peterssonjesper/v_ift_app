@@ -2,6 +2,7 @@ var eventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
 
 var lobbyActions = require('./../actions/lobby.js');
+var gameStore = require('./../stores/game.js');
 var dispatcher = require('./../singletons/dispatcher.js');
 
 var FETCH_LOBBY_STATUS_INTERVAL = 1000; // ms
@@ -14,6 +15,7 @@ var states = {
 
 var _lobby = {
 	state: states.HAS_NOT_JOINED_LOBBY,
+	id: 'lopning-5km',
 	name: '',
 	players: []
 };
@@ -26,6 +28,10 @@ var lobbyStore = _.assign({}, eventEmitter.prototype, {
 
 	getName: function () {
 		return _lobby.name;
+	},
+
+	getId: function () {
+		return _lobby.id;
 	},
 
 	getPlayers: function () {
@@ -57,7 +63,7 @@ lobbyStore.dispatchToken = dispatcher.register(function(payload) {
 setInterval(function () {
 	// TODO: When ready, stop fetching status
 	if (lobbyStore.getState() === states.HAS_JOINED_LOBBY) {
-		lobbyActions.fetchStatus(lobbyStore.getName());
+		lobbyActions.fetchStatus(lobbyStore.getId(), gameStore.getPlayerToken());
 	}
 }, FETCH_LOBBY_STATUS_INTERVAL);
 
