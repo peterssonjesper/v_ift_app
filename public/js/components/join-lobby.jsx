@@ -22,8 +22,8 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<form onSubmit={this._join}>
-				<h1>Gå med i {this.props.lobbyName}</h1>
-				<input type="text" value={this.state.name} onChange={this._nameChanged} />
+				<h1>{this.props.lobbyName}</h1>
+				<input type="text" value={this.state.name} onChange={this._nameChanged} placeholder="Namn" />
 				<input type="submit" value="Gå med" />
 			</form>
 		);
