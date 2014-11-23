@@ -20,12 +20,11 @@ module.exports = React.createClass({
 	},
 
 	render: function () {
-		
 		return (
-			<form onSubmit={this._join}>
+			<form onSubmit={this._join} className="lobby__join">
 				<input className="lobby__player-name" type="text" value={this.state.name} onChange={this._nameChanged} placeholder="Name" />
 				<div className="lobby__action-container">
-					<input className="lobby__button" type="submit" value="Gå med" />
+					<input className="lobby__button" type="submit" value="Kom igång!" />
 				</div>
 			</form>
 		);
@@ -39,7 +38,7 @@ module.exports = React.createClass({
 
 	_join: function (ev) {
 		ev.preventDefault();
-		lobbyActions.join(this.props.lobbyToken, this.state.name);
+		lobbyActions.join(this.props.lobbyId, this.state.name);
 	},
 
 	_onChange: function () {

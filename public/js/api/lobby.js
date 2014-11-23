@@ -5,7 +5,10 @@ var BASE_API_URL = 'http://viftapi.apphb.com';
 module.exports = {
 
 	join: function (lobbyId, playerName, callback) {
-		$.post(BASE_API_URL + '/join', function (response) {
+		$.post(BASE_API_URL + '/join', {
+			lobbyId: lobbyId,
+			playerName: playerName
+		}, function (response) {
 			console.log(response);
 			callback(playerToken);
 		});

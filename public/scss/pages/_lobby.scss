@@ -58,3 +58,23 @@
 .lobby__button {
   @extend %button-primary;
 }
+
+.lobby__player-name {
+  &, &[type="text"] {
+    margin-top: 0;
+    border: none;
+    text-align: center;
+  }
+}
+
+.lobby__join {
+  height: 110px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  margin: -15px;
+  padding: 15px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.8)
+}

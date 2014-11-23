@@ -23,19 +23,22 @@ module.exports = React.createClass({
 
 	render: function () {
 		var currentView = null;
+		var className = 'page';
 
 		if (this.state.gameState === gameStore.states.JOINING_LOBBY) {
-			currentView = <JoinLobby lobbyName="Kvällslöpning 5km" lobbyToken="217839123" />;
+			currentView = <JoinLobby lobbyName="Kvällslöpning 5km" lobbyId="v_iftlobby0" />;
 		} else if (this.state.gameState === gameStore.states.WAITING_FOR_READY_SIGNAL ||
 		  this.state.gameState === gameStore.states.WAITING_FOR_OTHERS) {
 			currentView = <Lobby />;
+			className += ' page--full';
 		} else if (this.state.gameState === gameStore.states.ONGOING ||
 		   this.state.gameState === gameStore.states.FINISHED) {
 			currentView = <Workout />;
+			className += ' page--full';
 		}
 
 		return (
-			<section>
+			<section className={className}>
 				<Header title={this._getHeader()} />
 				{currentView}
 			</section>
@@ -54,7 +57,7 @@ module.exports = React.createClass({
 
 	_getHeader: function () {
 		if (this.state.gameState === gameStore.states.JOINING_LOBBY) {
-			return "Join Lobby";
+			return "V_ift";
 		}
 
 		if (this.state.gameState === gameStore.states.WAITING_FOR_READY_SIGNAL ||
