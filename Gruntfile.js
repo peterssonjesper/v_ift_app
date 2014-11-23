@@ -45,6 +45,13 @@ module.exports = function(grunt) {
 				dest: 'v_ift/www/js/app.js'
 			}
 		},
+		
+		copy: {
+			build: {
+				src: 'public/dist/index.html',
+				dest: 'v_ift/www/index.html'
+			}
+		},
 
 		watch: {
 			css: {
@@ -73,9 +80,12 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', [], function(){
 		grunt.loadNpmTasks('grunt-sass');
 		grunt.loadNpmTasks('grunt-browserify');
+		grunt.loadNpmTasks('grunt-contrib-copy');
+		
 		
 		grunt.task.run('sass:build');
 		grunt.task.run('browserify:build');
+		grunt.task.run('copy:build');
 	});
 
 	grunt.registerTask('sass', [], function () {
