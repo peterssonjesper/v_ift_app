@@ -29,11 +29,14 @@ module.exports = React.createClass({
 		var button = this._getButton();
 		return (
 			<article>
-				Löpare:
-				<ul>
+				<h2>Participants</h2>
+				<ul className="lobby__list">
 					{players}
 				</ul>
-				{button}
+				<div className="lobby__action-container">
+					{button}
+				</div>
+				
 			</article>
 		);
 	},
@@ -41,18 +44,18 @@ module.exports = React.createClass({
 	_getPlayerNodes: function () {
 		return this.state.players.map(function (player, i) {
 			var isReady = (
-				<span>[ ]</span>
+				<span className="lobby__ready-state lobby--not-ready">Not Ready</span>
 			);
 			if (player.isReady) {
 				isReady = (
-					<span>[x]</span>
+					<span className="lobby__ready-state lobby--ready">Ready</span>
 				);
 			}
 
 			return (
-				<li key={"player-" + i}>
-					{isReady}
+				<li className="lobby__list-item" key={"player-" + i}>
 					{player.name}
+					{isReady}
 				</li>
 			);
 		});
@@ -80,9 +83,10 @@ module.exports = React.createClass({
 	},
 
 	_getButton: function () {
-		var className = '';
+		
+		var className = 'lobby__button';
 		if (this.state.isReady) {
-			className += 'button--disabled';
+			className += ' button--disabled';
 		}
 
 		if (geoStore.getStatus() === 'ALLOWED') {

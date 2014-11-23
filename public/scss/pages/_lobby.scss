@@ -2,6 +2,31 @@
   
 }
 
+.lobby__ready-state {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 4px 8px;
+  
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  
+}
+
+.lobby--not-ready {
+  background: $secondary-negative-color;
+}
+
+.lobby--ready {
+  background: $secondary-color;
+  text-shadow: 0 0 2px #aaa;
+}
+
+
 .lobby__action-container {
   position: absolute;
   bottom: 0;
@@ -16,11 +41,13 @@
 }
 
 .lobby__list-item {
-  font-size: 16px;
+  font-size: 18px;
   padding: 15px 0;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
   
-  span {
-    
+  &:last-child {
+    border-bottom: none;
   }
 }
 
